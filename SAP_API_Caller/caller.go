@@ -55,38 +55,38 @@ func (c *SAPAPICaller) Header(schedulingAgreement string) {
 	headerData, err := c.callPurchaseSchedulingAgreementSrvAPIRequirementHeader("A_SchAgrmtHeader", schedulingAgreement)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(headerData)
 	}
-	c.log.Info(headerData)
 
 	headerPartnerData, err := c.callToHeaderPartner(headerData[0].ToHeaderPartner)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(headerPartnerData)
 	}
-	c.log.Info(headerPartnerData)
 
 	itemData, err := c.callToItem(headerData[0].ToItem)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemData)
 	}
-	c.log.Info(itemData)
 
 	itemScheduleLineData, err := c.callToItemScheduleLine(itemData[0].ToItemScheduleLine)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemScheduleLineData)
 	}
-	c.log.Info(itemScheduleLineData)
-
+	
 	itemDeliveryAddressData, err := c.callToItemDeliveryAddress(itemData[0].ToItemDeliveryAddress)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemDeliveryAddressData)
 	}
-	c.log.Info(itemDeliveryAddressData)
-
+	return
 }
 
 func (c *SAPAPICaller) callPurchaseSchedulingAgreementSrvAPIRequirementHeader(api, schedulingAgreement string) ([]sap_api_output_formatter.Header, error) {
@@ -171,24 +171,24 @@ func (c *SAPAPICaller) Item(schedulingAgreement, schedulingAgreementItem string)
 	itemData, err := c.callPurchaseSchedulingAgreementSrvAPIRequirementItem("A_SchAgrmtItem", schedulingAgreement, schedulingAgreementItem)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemData)
 	}
-	c.log.Info(itemData)
 
 	itemScheduleLineData, err := c.callToItemScheduleLine(itemData[0].ToItemScheduleLine)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemScheduleLineData)
 	}
-	c.log.Info(itemScheduleLineData)
 
 	itemDeliveryAddressData, err := c.callToItemDeliveryAddress(itemData[0].ToItemDeliveryAddress)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(itemDeliveryAddressData)
 	}
-	c.log.Info(itemDeliveryAddressData)
-
+	return
 }
 
 func (c *SAPAPICaller) callPurchaseSchedulingAgreementSrvAPIRequirementItem(api, schedulingAgreement, schedulingAgreementItem string) ([]sap_api_output_formatter.Item, error) {
